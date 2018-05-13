@@ -19,7 +19,7 @@ func main() {
 		return
 	}
 
-	var lines []string
+	var wordsTable [][]string
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
@@ -27,15 +27,8 @@ func main() {
 		if err != nil && err == io.EOF {
 			break
 		}
-		lines = append(lines, string(line))
-	}
-
-	fmt.Println("printing output:")
-	wordsTable := make([][]string, len(lines))
-
-	for i := 0; i < len(lines); i++ {
-		lineWords := strings.Fields(lines[i])
-		wordsTable[i] = lineWords
+		lineWords := strings.Fields(string(line))
+		wordsTable = append(wordsTable, lineWords)
 	}
 
 	for i := 0; i < len(wordsTable); i++ {
