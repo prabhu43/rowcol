@@ -20,8 +20,8 @@ type Limit struct {
 func (f *Filter) Print() {
 	fmt.Println("printing output:", f.rows, f.cols)
 
-	for i := f.rows.from; i <= f.rows.to; i++ {
-		for j := f.cols.from; j < len(f.wordsTable[i]) && j <= f.cols.to; j++ {
+	for i := f.rows.from - 1; i < f.rows.to; i++ {
+		for j := f.cols.from - 1; j < len(f.wordsTable[i]) && j < f.cols.to; j++ {
 			fmt.Printf("%s,", f.wordsTable[i][j])
 		}
 		fmt.Println()
