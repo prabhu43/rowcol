@@ -7,9 +7,9 @@ import (
 )
 
 type Filter struct {
-	wordsTable [][]string
-	rows       Limit
-	cols       Limit
+	WordsTable [][]string
+	Rows       Limit
+	Cols       Limit
 }
 
 type Limit struct {
@@ -17,12 +17,15 @@ type Limit struct {
 	to   int
 }
 
+func NewLimit(from, to int) Limit {
+	return Limit{from, to}
+}
 func (f *Filter) Print() {
-	fmt.Println("printing output:", f.rows, f.cols)
+	fmt.Println("printing output:", f.Rows, f.Cols)
 
-	for i := f.rows.from - 1; i < f.rows.to; i++ {
-		for j := f.cols.from - 1; j < len(f.wordsTable[i]) && j < f.cols.to; j++ {
-			fmt.Printf("%s,", f.wordsTable[i][j])
+	for i := f.Rows.from - 1; i < f.Rows.to; i++ {
+		for j := f.Cols.from - 1; j < len(f.WordsTable[i]) && j < f.Cols.to; j++ {
+			fmt.Printf("%s,", f.WordsTable[i][j])
 		}
 		fmt.Println()
 	}
