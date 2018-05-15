@@ -25,6 +25,11 @@ var rootCmd = &cobra.Command{
 			return
 		}
 
+		if len(args) > 2 {
+			fmt.Println("Invalid arguments! Check Help!")
+			return
+		}
+
 		var wordsTable [][]string
 		reader := bufio.NewReader(os.Stdin)
 
@@ -37,12 +42,13 @@ var rootCmd = &cobra.Command{
 			wordsTable = append(wordsTable, lineWords)
 		}
 
-		for i := 0; i < len(wordsTable); i++ {
-			for j := 0; j < len(wordsTable[i]); j++ {
-				fmt.Printf("%s,", wordsTable[i][j])
-			}
-			fmt.Println()
+		filter, err := NewFilter(wordsTable, args[0], args[1])
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			filter.Print()
 		}
+
 	},
 }
 
