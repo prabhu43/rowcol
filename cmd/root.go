@@ -25,7 +25,7 @@ var rootCmd = &cobra.Command{
 			return
 		}
 
-		if len(args) > 2 {
+		if len(args) != 2 {
 			fmt.Println("Invalid arguments! Check Help!")
 			return
 		}
